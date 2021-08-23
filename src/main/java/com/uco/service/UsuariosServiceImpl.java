@@ -36,6 +36,7 @@ public class UsuariosServiceImpl implements UsuariosService {
 	}
 
 	@Override
+	@Transactional
 	public UsuariosEntity crearUsuario(UsuariosEntity usuariosEntity) {
 		return usuariosRepository.save(usuariosEntity);
 	}
@@ -55,10 +56,13 @@ public class UsuariosServiceImpl implements UsuariosService {
 	}
 	
 	@Override
+	@Transactional
 	public VehiculoEntity crearUsuarioYVehiculo(UsuariosEntity usuariosEntity, VehiculoEntity vehiculoEntity) {
 		usuariosService.crearUsuario(usuariosEntity);
 		vehiculoEntity.setUsuario(usuariosEntity);
-		return vehiculoService.crearVehiculo(vehiculoEntity);
+		vehiculoService.crearVehiculo(vehiculoEntity);
+		vehiculoEntity = vehiculoService.crearVehiculo(vehiculoEntity);
+		return vehiculoEntity;
 	}
 
 }

@@ -10,6 +10,7 @@ import com.uco.entity.VehiculoEntity;
 import com.uco.service.UsuariosService;
 
 @RestController
+@CrossOrigin(origins="*", methods= {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RequestMapping("/usuarios")
 public class UsuariosApi {
 	
@@ -43,7 +44,8 @@ public class UsuariosApi {
 	
 	@PostMapping(path="/crearUsuarioYVehiculo", produces ="application/json")
 	public VehiculoEntity crearUsuarioYVehiculo(@RequestBody UsuariosEntity usuariosEntity, VehiculoEntity vehiculoEntity) {
-		return usuariosService.crearUsuarioYVehiculo(usuariosEntity, vehiculoEntity);
+		vehiculoEntity = usuariosService.crearUsuarioYVehiculo(usuariosEntity, vehiculoEntity);
+		return vehiculoEntity;
 	}
 
 }

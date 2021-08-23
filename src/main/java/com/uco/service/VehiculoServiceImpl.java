@@ -28,6 +28,7 @@ public class VehiculoServiceImpl implements VehiculoService{
 	}
 
 	@Override
+	@Transactional
 	public VehiculoEntity crearVehiculo(VehiculoEntity vehiculoEntity) {
 		return vehiculoRepository.save(vehiculoEntity);
 	}

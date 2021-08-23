@@ -22,13 +22,13 @@ public class VehiculoEntity implements Serializable {
 	@Column(name="fecha_ingreso")
 	private Date fechaIngreso;
 	
-	@Column(name="digito_verificacion", insertable=true)
-	private Long digitoVerificacion;
+	@Column(name="digito_verificacion", nullable=false, insertable=true)
+	private int digitoVerificacion;
 	
-	@Column(name="placa_vehiculo",insertable=true)
+	@Column(name="placa_vehiculo", nullable=false, insertable=true)
 	private String placaVehiculo;
 	
-	@Column(name="tipo_vehiculo",insertable=true)
+	@Column(name="tipo_vehiculo", nullable=false, insertable=true)
 	private String tipoVehiculo;
 	@PrePersist
 	protected void onCreate() {
@@ -39,7 +39,7 @@ public class VehiculoEntity implements Serializable {
 		super();
 	}
 
-	public VehiculoEntity(Long idVehiculo, UsuariosEntity usuario, Date fechaIngreso, Long digitoVerificacion,
+	public VehiculoEntity(Long idVehiculo, UsuariosEntity usuario, Date fechaIngreso, int digitoVerificacion,
 			String placaVehiculo, String tipoVehiculo) {
 		super();
 		this.idVehiculo = idVehiculo;
@@ -74,11 +74,11 @@ public class VehiculoEntity implements Serializable {
 		this.fechaIngreso = fechaIngreso;
 	}
 
-	public Long getDigitoVerificacion() {
+	public int getDigitoVerificacion() {
 		return digitoVerificacion;
 	}
 
-	public void setDigitoVerificacion(Long digitoVerificacion) {
+	public void setDigitoVerificacion(int digitoVerificacion) {
 		this.digitoVerificacion = digitoVerificacion;
 	}
 
