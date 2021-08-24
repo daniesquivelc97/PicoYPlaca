@@ -9,8 +9,8 @@ import com.uco.entity.UsuariosEntity;
 import com.uco.entity.VehiculoEntity;
 import com.uco.service.UsuariosService;
 
-@RestController
 @CrossOrigin(origins="*", methods= {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+@RestController
 @RequestMapping("/usuarios")
 public class UsuariosApi {
 	

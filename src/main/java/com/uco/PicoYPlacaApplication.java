@@ -2,6 +2,7 @@ package com.uco;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -26,27 +27,46 @@ public class PicoYPlacaApplication {
 
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
-			http.csrf().disable()
+			http.cors().and().csrf().disable()
 				.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
 				.authorizeRequests()
-				.antMatchers(HttpMethod.POST, "/admin/login").permitAll()
+				.antMatchers("/admin/**").permitAll()
 				.anyRequest().authenticated();
 		}
 	}
 	
-	@Configuration
-	public class WebConfig implements WebMvcConfigurer {
-	    @Override
-	    public void addCorsMappings(CorsRegistry corsRegistry) {
-	        corsRegistry.addMapping( "/**" )
-	                .allowedOrigins( "http://localhost:4200/" )
-	                .allowedMethods( "GET", "POST", "DELETE", "PUT" )
-	                .allowedHeaders( "*" )
-	                .allowCredentials( true )
-	                .exposedHeaders( "Authorization" )
-	                .maxAge( 3600 );
-	    }
-
+	
+	public class CorsConfig implements WebMvcConfigurer {
+		@Bean
+		public WebMvcConfigurer corsConfigurer() {
+			return new WebMvcConfigurer() {
+				@Override
+				public void addCorsMappings(CorsRegistry registry) {
+					registry.addMapping("/**")
+					.allowedOrigins("http://localhost:4200")
+					.allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD","OPTIONS")
+                    .allowedHeaders("Content-Type", "Date", "Total-Count", "loginInfo","authorization", "jwt_token")
+                    .exposedHeaders("Content-Type", "Date", "Total-Count", "loginInfo", "authorization", "jwt_token")
+                    .maxAge(3600);
+				}
+			};
+		}
 	}
+	
+//	@Configuration
+//	public class WebConfig implements WebMvcConfigurer {
+//	    @Override
+//	    public void addCorsMappings(CorsRegistry corsRegistry) {
+//	        corsRegistry.addMapping( "/**" )
+//	                .allowedOrigins( "http://localhost:4200" )
+//	                .allowedHeaders("*")
+//	                .allowedMethods( "OPTIONS", "GET", "POST", "DELETE", "PUT" )
+//	                .allowedHeaders( "*" )
+//	                .allowCredentials( true )
+//	                .exposedHeaders( "Authorization" )
+//	                .maxAge( 360000 );
+//	    }
+//
+//	}
 
 }
