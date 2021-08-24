@@ -9,10 +9,9 @@ import javax.persistence.*;
 public class UsuariosEntity implements Serializable {
 	private static final long serialVersionUID = -2343243243242432351L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_usuario", unique=true, nullable=false, insertable=false)
-	private Long idUsuario;
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@Column(name = "id_usuario", nullable=false, insertable=false)
+//	private Long idUsuario;
 	
 	@Column(name="nombre")
 	private String nombre;
@@ -20,8 +19,15 @@ public class UsuariosEntity implements Serializable {
 	@Column(name="apellido")
 	private String apellido;
 	
-	@Column(name="cedula")
-	private int cedula;
+	@Column(name="email")
+	private String email;
+
+	@Column(name="tipo_identificacion")
+	private String tipoIdentificacion;
+	
+	@Id
+	@Column(name="numero_identificacion", unique=true, nullable=false)
+	private Long numeroIdentificacion;
 	
 	@Column(name="placa")
 	private String placa;
@@ -29,35 +35,25 @@ public class UsuariosEntity implements Serializable {
 	@Column(name="vehiculo")
 	private String vehiculo;
 	
-	@Column(name="idhexrfid")
-	private String idhexrfid;
-	
-	@Column(name="iddecrfid")
-	private String iddecrfid;
+	@Column(name="id_carnet")
+	private String idCarnet;
 
 	public UsuariosEntity() {
 		super();
 	}
 
-	public UsuariosEntity(Long idUsuario, String nombre, String apellido, int cedula, String placa, String vehiculo,
-			String idhexrfid, String iddecrfid) {
+	public UsuariosEntity(String nombre, String apellido, String email, String tipoIdentificacion,
+			Long numeroIdentificacion, String placa, String vehiculo, String idCarnet) {
 		super();
-		this.idUsuario = idUsuario;
+//		this.idUsuario = idUsuario;
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.cedula = cedula;
+		this.email = email;
+		this.tipoIdentificacion = tipoIdentificacion;
+		this.numeroIdentificacion = numeroIdentificacion;
 		this.placa = placa;
 		this.vehiculo = vehiculo;
-		this.idhexrfid = idhexrfid;
-		this.iddecrfid = iddecrfid;
-	}
-
-	public Long getIdUsuario() {
-		return idUsuario;
-	}
-
-	public void setIdUsuario(Long idUsuario) {
-		this.idUsuario = idUsuario;
+		this.idCarnet = idCarnet;
 	}
 
 	public String getNombre() {
@@ -76,12 +72,28 @@ public class UsuariosEntity implements Serializable {
 		this.apellido = apellido;
 	}
 
-	public int getCedula() {
-		return cedula;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setCedula(int cedula) {
-		this.cedula = cedula;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getTipoIdentificacion() {
+		return tipoIdentificacion;
+	}
+
+	public void setTipoIdentificacion(String tipoIdentificacion) {
+		this.tipoIdentificacion = tipoIdentificacion;
+	}
+
+	public Long getNumeroIdentificacion() {
+		return numeroIdentificacion;
+	}
+
+	public void setNumeroIdentificacion(Long numeroIdentificacion) {
+		this.numeroIdentificacion = numeroIdentificacion;
 	}
 
 	public String getPlaca() {
@@ -100,22 +112,12 @@ public class UsuariosEntity implements Serializable {
 		this.vehiculo = vehiculo;
 	}
 
-	public String getIdhexrfid() {
-		return idhexrfid;
+	public String getIdCarnet() {
+		return idCarnet;
 	}
 
-	public void setIdhexrfid(String idhexrfid) {
-		this.idhexrfid = idhexrfid;
+	public void setIdCarnet(String idCarnet) {
+		this.idCarnet = idCarnet;
 	}
-
-	public String getIddecrfid() {
-		return iddecrfid;
-	}
-
-	public void setIddecrfid(String iddecrfid) {
-		this.iddecrfid = iddecrfid;
-	}
-
-	
 
 }

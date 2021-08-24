@@ -16,7 +16,7 @@ public class VehiculoEntity implements Serializable {
 	private Long idVehiculo;
 	
 	@ManyToOne
-	@JoinColumn(name="id_usuario")
+	@JoinColumn(name="numeroIdentificacion")
 	private UsuariosEntity usuario;
 	
 	@Column(name="fecha_ingreso")

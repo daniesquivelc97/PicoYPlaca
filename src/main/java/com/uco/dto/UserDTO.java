@@ -1,22 +1,22 @@
 package com.uco.dto;
 
-public class User {
+public class UserDTO {
 	
 	public String email;
 	
-	public String password;
+	public String nombres;
 	
 	public String token;
 
-	public User() {
+	public UserDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(String email, String password, String token) {
+	public UserDTO(String email, String nombres, String token) {
 		super();
 		this.email = email;
-		this.password = password;
+		this.nombres = nombres;
 		this.token = token;
 	}
 
@@ -28,12 +28,12 @@ public class User {
 		this.email = email;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getNombres() {
+		return nombres;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setNombres(String nombres) {
+		this.nombres = nombres;
 	}
 
 	public String getToken() {
@@ -43,5 +43,6 @@ public class User {
 	public void setToken(String token) {
 		this.token = token;
 	}
+
 
 }

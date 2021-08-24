@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.uco.dto.User;
+import com.uco.dto.UserDTO;
 import com.uco.entity.AdminEntity;
 import com.uco.service.AdminService;
 
@@ -32,14 +32,14 @@ public class AdminApi {
 	private AdminService adminService;
 	
 	@PostMapping(path="/login", consumes = "application/json", produces ="application/json")
-	public User login(@RequestBody AdminEntity adminEntity) throws AuthenticationException {
-		User user = new User();
+	public UserDTO login(@RequestBody AdminEntity adminEntity) throws AuthenticationException {
+		UserDTO user = new UserDTO();
 		adminEntity = adminService.getUsuarioLogin(adminEntity.getEmail(), adminEntity.getPassword());
 		if(adminEntity != null) {
 //			String password = adminEntity.setPassword("");
 			String token = getJWTToken(adminEntity.getEmail());
 			user.setEmail(adminEntity.getEmail());
-			user.setPassword(adminEntity.getPassword());
+			user.setNombres(adminEntity.getNombre());
 			user.setToken(token);	
 		} else {
 			throw new AuthenticationException("Usuario y/o contraseña incorrecto");

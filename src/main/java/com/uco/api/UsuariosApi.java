@@ -27,6 +27,11 @@ public class UsuariosApi {
 		return usuariosService.getUsuario(idUsuario);
 	}
 	
+	@GetMapping(value="/cedula/{cedula}")
+	public UsuariosEntity getUsuarioByCedula(@PathVariable("cedula")int cedula) {
+		return usuariosService.getUsuarioByNumeroIdentificacion(cedula);
+	}
+	
 	@PostMapping(value="/crearUsuario", produces="application/json")
 	public UsuariosEntity crearUsuario(@RequestBody UsuariosEntity usuariosEntity) {
 		return usuariosService.crearUsuario(usuariosEntity);

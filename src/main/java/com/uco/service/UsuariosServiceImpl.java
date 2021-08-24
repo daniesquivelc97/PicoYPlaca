@@ -45,7 +45,7 @@ public class UsuariosServiceImpl implements UsuariosService {
 
 	@Override
 	public UsuariosEntity modificarUsuario(UsuariosEntity usuariosEntity) {
-		return usuariosRepository.findById(usuariosEntity.getIdUsuario()).isPresent()?
+		return usuariosRepository.findById(usuariosEntity.getNumeroIdentificacion()).isPresent()?
 				usuariosRepository.save(usuariosEntity):null;
 	}
 
@@ -63,6 +63,11 @@ public class UsuariosServiceImpl implements UsuariosService {
 		vehiculoService.crearVehiculo(vehiculoEntity);
 		vehiculoEntity = vehiculoService.crearVehiculo(vehiculoEntity);
 		return vehiculoEntity;
+	}
+
+	@Override
+	public UsuariosEntity getUsuarioByNumeroIdentificacion(int numeroIdentificacion) {
+		return usuariosRepository.findByNumeroIdentificacion(numeroIdentificacion);
 	}
 
 }

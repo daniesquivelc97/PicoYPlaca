@@ -9,6 +9,8 @@ public interface UsuariosService {
 	
 	public UsuariosEntity getUsuario(Long idUsuario);
 	
+	public UsuariosEntity getUsuarioByNumeroIdentificacion(int numeroIdentificacion);
+	
 	public List<UsuariosEntity> getUsuario();
 	
 	public UsuariosEntity crearUsuario(UsuariosEntity usuariosEntity);
