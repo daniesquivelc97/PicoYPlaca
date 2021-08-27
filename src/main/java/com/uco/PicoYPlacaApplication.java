@@ -4,7 +4,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -30,7 +29,7 @@ public class PicoYPlacaApplication {
 			http.cors().and().csrf().disable()
 				.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
 				.authorizeRequests()
-				.antMatchers("/admin/**").permitAll()
+				.antMatchers("/admin/login").permitAll()
 				.anyRequest().authenticated();
 		}
 	}
@@ -52,21 +51,5 @@ public class PicoYPlacaApplication {
 			};
 		}
 	}
-	
-//	@Configuration
-//	public class WebConfig implements WebMvcConfigurer {
-//	    @Override
-//	    public void addCorsMappings(CorsRegistry corsRegistry) {
-//	        corsRegistry.addMapping( "/**" )
-//	                .allowedOrigins( "http://localhost:4200" )
-//	                .allowedHeaders("*")
-//	                .allowedMethods( "OPTIONS", "GET", "POST", "DELETE", "PUT" )
-//	                .allowedHeaders( "*" )
-//	                .allowCredentials( true )
-//	                .exposedHeaders( "Authorization" )
-//	                .maxAge( 360000 );
-//	    }
-//
-//	}
 
 }

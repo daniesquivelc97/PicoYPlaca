@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +31,11 @@ public class AdminApi {
 	
 	@Autowired
 	private AdminService adminService;
+	
+	@GetMapping(value="/all")
+	public List<AdminEntity> getAdmins(){
+		return adminService.getAdmins();
+	}
 	
 	@PostMapping(path="/login", consumes = "application/json", produces ="application/json")
 	public UserDTO login(@RequestBody AdminEntity adminEntity) throws AuthenticationException {

@@ -1,5 +1,7 @@
 package com.uco.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,16 +14,10 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	private AdminRepository adminRepository;
-	
-	@Autowired
-	private AdminService adminService;
 
 	@Override
 	public AdminEntity getUsuarioLogin(String email, String password) {
 		String claveEncriptada = Utility.encryptText(password);
-//		String claveDes = Utility.decryptText(claveEncriptada);
-//		System.out.print("Clave encriptada " + claveEncriptada);
-//		System.out.print("Clave Desen " + claveDes);
 		return adminRepository.findByEmailAndPassword(email, claveEncriptada);
 	}
 
@@ -31,5 +27,12 @@ public class AdminServiceImpl implements AdminService {
 		adminEntity.setPassword(claveEncriptada);
 		return adminRepository.save(adminEntity);
 	}
+
+	@Override
+	public List<AdminEntity> getAdmins() {
+		return (List<AdminEntity>) adminRepository.findAll();
+	}
+
+	
 
 }
