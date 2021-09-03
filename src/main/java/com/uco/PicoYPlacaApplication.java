@@ -46,7 +46,7 @@ public class PicoYPlacaApplication {
 					.allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD","OPTIONS")
                     .allowedHeaders("Content-Type", "Date", "Total-Count", "loginInfo","authorization", "jwt_token")
                     .exposedHeaders("Content-Type", "Date", "Total-Count", "loginInfo", "authorization", "jwt_token")
-                    .maxAge(3600);
+                    .maxAge(10000);
 				}
 			};
 		}
